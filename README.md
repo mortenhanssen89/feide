@@ -1,5 +1,4 @@
 feide
 =====
 
-SkyHiGH Feide
-To be member of this repository contact Morten
+Welcome to SkyHiGH Feide
