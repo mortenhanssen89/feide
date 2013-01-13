@@ -1,10 +1,15 @@
 \documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
 \usepackage[left=20mm,top=20mm,bottom=30mm]{geometry}
+\usepackage{graphicx}
 
 \begin{document}
 \title{Forprosjekt \\ for \\ SkyHiGH Feide}
 \author{Fredrik Magnussen, Håkon Tvedt og Morten Hanssen Singstad}
 \maketitle
+\begin{center}
+\includegraphics[scale=1]{logo.png}
+\end{center}
 
 \newpage
 \tableofcontents
@@ -20,7 +25,8 @@ sette opp og teste Openstack med SkyHiGH Adm i en VM på vår egen maskin. \newl
 Med dette så kan vi få begynt på del to. Siden vi er driftere så vil følge en uskreven regel som er; Kan en oppgave automatiseres, så skal den automatisere.
 Med dette så skal vi lage script. Script for installering av OS på serverne. Script for å ta backup som et image av OS-et, med de siste konfigurasjonene og installeringer.
 Dette er også for at det skal spare oss for problemer. Hvis vi skulle være så uheldige med f.eks systemet vårt, så vil vi alltid ha en fungerende installasjon, uten å miste
-altfor mye arbeid. 
+altfor mye arbeid. Ikke bare vil dette gagne oss, men det er en "best practise" med tanke på at hvis systemet skulle bli gå dukken på grunn av andre hendelser. Da vil 
+man kunne få systemet opp å gå på veldig kort tid. 
 
 \subsection{Organisering og kvalitetssikring}
 
