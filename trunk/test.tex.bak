@@ -1,0 +1,9 @@
+\documentclass[12pt]{article}
+
+\begin{document}
+\title{SkyHiGH Feide}
+\maketitle 
+
+\section{Introduction}
+We will talk a bit about our project here
+\end{document}
