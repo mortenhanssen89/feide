@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.1.11)  17 JAN 2013 12:10
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.1.11)  17 JAN 2013 13:31
 entering extended mode
  %&-line parsing enabled.
-**Prosjektplan.tex
-(./Prosjektplan.tex
+**prosjektplan.tex
+(./prosjektplan.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
@@ -316,8 +316,8 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 )
 \everycr=\toks19
 \minrowclearance=\skip45
-) (./Prosjektplan.aux)
-\openout1 = `Prosjektplan.aux'.
+) (./prosjektplan.aux)
+\openout1 = `prosjektplan.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
@@ -395,7 +395,7 @@ File: logo.png Graphic file (type png)
  <use logo.png> [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logo.png (PNG copy)>]
-(./Prosjektplan.toc
+(./prosjektplan.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -404,7 +404,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
 )
 \tf@toc=\write3
-\openout3 = `Prosjektplan.toc'.
+\openout3 = `prosjektplan.toc'.
 
  [2]
 Underfull \hbox (badness 10000) in paragraph at lines 27--32
@@ -439,82 +439,92 @@ ring. Ut-vide og teste funksjon-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--58
+Underfull \hbox (badness 10000) in paragraph at lines 53--57
 
  []
 
 [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 86--98
+Underfull \hbox (badness 10000) in paragraph at lines 87--92
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--98
+Underfull \hbox (badness 10000) in paragraph at lines 87--92
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--92
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--92
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 121--124
+Underfull \hbox (badness 10000) in paragraph at lines 114--117
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--124
+Underfull \hbox (badness 10000) in paragraph at lines 114--117
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 131--131
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
 []|\OT1/cmr/m/n/12 Sykdom blant
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--132
+Underfull \hbox (badness 10000) in paragraph at lines 124--124
 \OT1/cmr/m/n/12 men-neske-feil
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 []|\OT1/cmr/m/n/12 Kontinuerlig
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 \OT1/cmr/m/n/12 backup(automatisert)
  []
 
 
-Underfull \hbox (badness 3250) in paragraph at lines 132--133
+Underfull \hbox (badness 3250) in paragraph at lines 124--125
 \OT1/cmr/m/n/12 og repos-i-tory p^^Wa det vi
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 134--134
+Underfull \hbox (badness 1221) in paragraph at lines 126--126
 []|\OT1/cmr/m/n/12 D^^Warlig tid-splan-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--135
+Underfull \hbox (badness 10000) in paragraph at lines 127--127
 []|\OT1/cmr/m/n/12 Endringer som
  []
 
 
-Underfull \hbox (badness 3049) in paragraph at lines 135--136
+Underfull \hbox (badness 3049) in paragraph at lines 127--128
 []|\OT1/cmr/m/n/12 Backup, au-toma-tis-ert in-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--136
+Underfull \hbox (badness 10000) in paragraph at lines 128--128
 []|\OT1/cmr/m/n/12 D^^Warlig doku-
  []
 
 
-Underfull \hbox (badness 1383) in paragraph at lines 136--137
+Underfull \hbox (badness 1383) in paragraph at lines 128--129
 \OT1/cmr/m/n/12 til doku-men-tasjon. Ofte
  []
 
 
-Overfull \hbox (21.54718pt too wide) in paragraph at lines 129--138
+Overfull \hbox (21.54718pt too wide) in paragraph at lines 121--130
 [][] 
  []
 
@@ -525,7 +535,7 @@ File: bachelorgantt.png Graphic file (type png)
 <grupperegler.png, id=35, 1002.74625pt x 1003.75pt>
 File: grupperegler.png Graphic file (type png)
  <use grupperegler.png>
-[9 <./grupperegler.png (PNG copy)>] (./Prosjektplan.aux) ) 
+[9 <./grupperegler.png (PNG copy)>] (./prosjektplan.aux) ) 
 Here is how much of TeX's memory you used:
  1706 strings out of 493848
  21811 string characters out of 1152823
@@ -533,13 +543,13 @@ Here is how much of TeX's memory you used:
  4977 multiletter control sequences out of 15000+50000
  9063 words of font info for 32 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 34i,12n,19p,645b,274s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,12n,19p,741b,274s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texmf-texlive/fonts
 /type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/publ
 ic/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
 cm/cmr17.pfb>
-Output written on Prosjektplan.pdf (9 pages, 614766 bytes).
+Output written on prosjektplan.pdf (9 pages, 615670 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
