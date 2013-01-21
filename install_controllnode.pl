@@ -49,7 +49,7 @@ $dbh=do('CREATE DATABASE keystone');
 $dbh->disconnect;
 
 $dbh=DBI->connect('dbi:mysql:keystone' , 'root' , 'skyhigh');
-$dbh=do('GRANT ALL ON keystone.* TO 'keystoneUser'\@'%' IDENTIFIED BY 'keystonePass'');
+$dbh=do('GRANT ALL ON keystone.* TO 'keystoneUser\'@'%' IDENTIFIED BY 'keystonePass'');
 $dbh->disconnect;
 
 =begin
