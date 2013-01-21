@@ -44,11 +44,11 @@ system("sed -i 's/#net.ipv4.ip_forward=1/sysctl net.ipv4.ip_forward=1/g'");
 system("apt-get install -y keystone");
 
 use DBI;
-$dbh=DBI->connect('dbi:mysql:' , 'root' , 'skyhigh');
+$dbh=DBI->connect('dbi:mysql:' , root , skyhigh);
 $dbh=do('CREATE DATABASE keystone');
 $dbh=do('quit');
 
-$dbh=DBI->connect('dbi:mysql:keystone' , 'root' , 'skyhigh');
+$dbh=DBI->connect('dbi:mysql:keystone' , root , skyhigh);
 $dbh=do("GRANT ALL ON keystone.* TO 'keystoneUser'\@'%' IDENTIFIED BY 'keystonePass'");
 $dbh=do('quit');
 
