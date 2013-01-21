@@ -46,11 +46,11 @@ system("apt-get install -y keystone");
 use DBI;
 $dbh=DBI->connect('dbi:mysql:' , 'root' , 'skyhigh');
 $dbh=do('CREATE DATABASE keystone');
-$dbh->disconnect;
+$dbh->quit;
 
 $dbh=DBI->connect('dbi:mysql:keystone' , 'root' , 'skyhigh');
-$dbh=do('GRANT ALL ON keystone.* TO 'keystoneUser\'@'%' IDENTIFIED BY 'keystonePass'');
-$dbh->disconnect;
+$dbh=do("GRANT ALL ON keystone.* TO 'keystoneUser'\@'%' IDENTIFIED BY 'keystonePass'");
+$dbh->quit;
 
 =begin
 open(FILE, "keystone_basic.sh") or die "Couldn't open the file!: $!\n";
