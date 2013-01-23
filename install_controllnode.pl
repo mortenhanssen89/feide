@@ -7,61 +7,79 @@
 
 #Descrition: This script will install a basic controll node.
 
-my $ifconfeth0 = "iface eth0 inet static\naddress 100.10.10.51\n255.255.255.0\n";
-my $ifconfeth1 = "iface eth1 inet dhcp\n";
-
-#system("sudo su");
-system("apt-get -y update");
-system("apt-get -y upgrade");
-system("apt-get -y dist-upgrade");
-system("apt-get -y install vim");
-
-open(FILE, "+</etc/network/interfaces") or die "Couldn't open the file! $!\n";
-while($line = <FILE>) {
-	if($line =~ m/auto lo/) {
-		print FILE "$ifconfeth0\n"; 
-	}
-	
-	if($line =~ m/auto eth1/) {
-                print FILE "$ifconfeth1"; 
-        }
-}
-close(FILE);
-
-system("export DEBIAN_FRONTEND=noninteractive");
-system("debconf-set-selections <<< 'mysql-server mysql-server/root_password password skyhigh'");
-system("debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password skyhigh'");
-system("apt-get -q -y install mysql-server");
-system("apt-get -y install python-mysqldb");
-system("sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf");
-system("service mysql restart");
-system("apt-get -y install rabbitmq-server");
-system("apt-get -y install ntp");
-system("sed -i 's/server ntp.ubuntu.com/server ntp.ubuntu.com\nserver 127.127.1.0\nfudge 127.127.1.0 stratum 10/g' /etc/ntp.conf");
-system("service ntp restart");
-system("apt-get -y install vlan bridge-utils");
-system("sed -i 's/#net.ipv4.ip_forward=1/sysctl net.ipv4.ip_forward=1/g'");
-system("apt-get install -y keystone");
-
+use strict;
+use warnings;
 use DBI;
-$dbh=DBI->connect('dbi:mysql:' , root , skyhigh);
-$dbh=do('CREATE DATABASE keystone');
-$dbh=do('quit');
 
-$dbh=DBI->connect('dbi:mysql:keystone' , root , skyhigh);
-$dbh=do("GRANT ALL ON keystone.* TO 'keystoneUser'\@'%' IDENTIFIED BY 'keystonePass'");
-$dbh=do('quit');
+my $system1 = "system1.txt";
+my $system2 = "system2.txt";
+my $line;
 
-=begin
-open(FILE, "keystone_basic.sh") or die "Couldn't open the file!: $!\n";
-while($line = <FILE>) {
-	if($line =~ m/#/) {
+sub readfile {
+	open(FILE, "< $_[0]") or die "Couldn't open the file! $_[0]\n";
+	while($line = <FILE>) {
+		system($line);
 	}
+	close(FILE);
+};
+
+sub networkfile() {	
+	my $ifconfeth0 = "iface eth0 inet static\naddress 100.10.10.51\n255.255.255.0\n";
+	my $ifconfeth1 = "iface eth1 inet dhcp\n";	
+
+	open(FILE, "+</etc/network/interfaces") or die "Couldn't open the file! $!\n";	
+	while($line = <FILE>) {
+		if($line =~ m/auto lo/) {
+			print FILE "$ifconfeth0\n"; 
+		}
 	
-	else {
-		system("$line");
+		if($line =~ m/auto eth1/) {
+        	print FILE "$ifconfeth1"; 
+    	}
 	}
-}
-=end
-=cut
+	close(FILE);
+};
 
+sub sql() {
+	my $dbh;
+	my $statement;
+	my $dbuser = "root";
+	my $dbpass = "skyhigh";
+	my $connectmysql = "dbi:mysql:"; 
+	my $connectkeystone = "dbi:mysql:keystone";	
+	my $cdk = "CREATE DATABASE keystone";
+	my $gak = "GRANT ALL ON keystone.* TO 'keystoneUser'\@'%' IDENTIFIED BY 'keystonePass'";
+
+	$dbh=DBI->connect($connectmysql, $dbuser, $dbpass);
+	$statement = $dbh->prepare($cdk);
+	$statement->execute();
+	$dbh->disconnect();
+	
+	$dbh=DBI->connect($connectkeystone, $dbuser, $dbpass);
+	$statement = $dbh->prepare($gak);
+	$statement->execute();
+	$dbh->disconnect();
+};
+
+sub makecredfile() {
+	my $textinfile = "export OS_TENANT_NAME=admin\nexport OS_USERNAME=admin\nexport OS_PASSWORD=admin_pass\nexport OS_AUTH_URL=\"http://192.168.100.51:5000/v2.0/\"";
+
+	system("touch creds");
+	open(FILE, ">creds") or die "Couldn't write to file! $!\n";
+	print FILE  $textinfile;
+	close(FILE);
+	system("source creds");
+};
+
+
+
+#readfile($system1);
+networkfile();
+readfile($system2);
+sql();
+#Modify the HOST_IP and HOST_IP_EXT variables before executing the scripts
+#system("chmod +x keystone_basic.sh");
+#system("./keystone_basic.sh");
+#system("chmod +x keystone_endpoints_basic.sh");
+#system("./keystone_endpoints_basic.sh");
+makecredfile();
