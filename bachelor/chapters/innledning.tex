@@ -1,0 +1,78 @@
+\begin{center}
+	\chapter{Innledning}
+\end{center}
+\section{Bakgrunn}
+Autentisering, er i dag et stort tema. Det er mye snakk på at det blir for mange brukernavn og passord å huske. Det diskuteres også at dette skader sikkerheten av data. Grunnen til dette er at brukerne lager seg lettere passord, lagrer passord på telefonen, post-it-lapper og mange andre finurlige måter. Dette er ingen heldig situasjon, men det er veldig forståelig at det blir sånn. \newline \newline
+En av løsningene på dette er FEIDE\cite{Omfeide}. Denne løsningen er kunnskapsdepartementets svar på problemet. Denne løsningen er kun innenfor utdanningssektoren i Norge, men det vil være en stor reduksjon i hvor mange brukernavn og passord som må huskes. \newline \newline
+Det er derfor blitt et ønske fra Erik Hjelmås fra Høgskolen i Gjøvik å integrere dette på skyløsningen til skolen. Openstack-skyløsningen ved HiG skal i første omgang være tilgjengelig for ansatte og fag. Det er flere fag som bruker VM-er i undervisningen (Ethical Hacking And Penetration Testing \cite{imt3491}, Systemadministrasjon \cite{imt3292} og Database- og applikasjonsdrift \cite{imt3441}). \newline \newline
+\textbf{Ønsker fra arbeidsgiver}
+\begin{description}
+	\item[\tab •] Sentral innlogging for VM-er.
+	\item[\tab •] Skal kunne bruke brukernavn og passord som man har ellers på skolen.
+\end{description}
+Nåværende løsning er at det står to servere som har lokale brukere. Disse opprettes om vedlikeholdes i passwd- og shadowfilene. Dette er en tungvint løsning ved når man ønsker å utvide VM-systeme for bruk av flere ved HiG.
+
+\newpage
+\section{Oppgavebeskrivelse}
+Hensikten ved bacheloroppgaven SkyHiGhFeide er at vi skal integrere modul i Openstack som autentiserer mot Feide (Openstack er et “open source cloud computing”-prosjekt). Denne løsning vil gjøre at man kan bruke allerede brukernavn og passord som man har i Feide. Flere tjenester i undervisningssektoren i Norge bruker Feide, målet til kunnskapsdepartemnetet er at alt innen skole-Norge skal autentiseres mot Feide. Ved denne modul-integreringen i Openstack vil det da bli en standard i innlogging. \newline \newline
+Vi skal sette opp et rack med Openstack-løsning som skal kjøre VM-systemet for skolen. Dette vil bedre ytelse og effektiviteten ved bruk av VM på HiG. Vi skal sette opp autentiseringen mot horizon-platformen på kontrollernoden i Openstack. Denne skal kjøre autentisering mot keystone-platformen i Openstack, som er autentiseringstjenesten i Openstack. 
+\begin{description}
+\item[\tab •] Sette opp SkyHiGh løsningen og oppdatere denne til siste versjon av OpenStack.
+\item[\tab •] Utrede og realisere rollebasert identitetshåndtering og tilhørende FEIDE-autentisering.
+\end{description}
+\section{Rapportorganisering}
+\begin{description}
+\item[\tab 1.] Innledning - Et lite innblikk i rapporten. Gir en kort overordnet oversikt av hvordan rapporten er strukturert og hva den inneholder.
+\item[\tab 2.] Kravspesifikasjon - Her dokumenteres kravene som arbeidsgiver har satt for hvordan systemet skal fungere med autentisering mot Openstack.
+\item[\tab 3.] Teoretisk grunnlag Openstack - Her gir en grundig inføring i hvordan autentiseringen fungerer i Openstack. Dette er viktig for å få forståelse for hvor og hvordan vi skal kunne integrere Feide-autentisering.
+\item[\tab 4.] Teoretisk grunnlag Feide - Her gir vi en grundig inføring og forklaring av hvordan Feide-autentisering fungerer. Veldig viktig for forståelse av hvordan vi skal kunne autentisere mot Openstack.
+\item[\tab 5.] Design - Går mer inn på designet autentiseringen i Openstack og Feide, samt detaljert design som er utbedret av kravspesifikasjonen.
+\item[\tab 6.] Gjennomføring - Her vil det bli detaljert, dokumentert og godt beskrivende forklaring på hvordan vi gjennomfører prosjektet. 
+\item[\tab 7.] Driftrutiner - Her gir vi en forklaring på hvordan det skal vedlikeholdes og oppdateres for å opprettholde sikkerhet og brukervennlighet.
+\item[\tab 8.] Drøting - Vi diskuterer om det finnes andre og kanskje bedre muligheter i forhold til autentisering. Litt nøyere drøfting det vi har gjort kontra andre. Spør oss selv om sikkerheten blir svekket. 
+\item[\tab 9.] Avlsuttning - Konklusjonen fra oppgaven, hvordan resultatet ble og hvordan utførelsen ble gjort.
+\item[\tab 10.] Bibliografi og litteraturliste - En oversikt over referanser og tekster som er brukt i denne rapporten, samt en liste over komplekse ord.
+\item[\tab 11.] Vedlegg - Dokumentering av figurer, tabeller til rapporten. Andre vedlegg: Prosjektplan, script, dagslogg og referater fra diverse møter.
+\end{description}
+
+\newpage
+\section{Beskrivelser}
+Her kommer noen regler og beskrivelser på hvordan spesielle ord brukes i rapport og blir forklart. \newline \newline
+Vi-ordet refereres til prosjektgruppen vår som består av Fredrik Magnussen, Håkon Tvedt og Morten H. Singstad. Når vi snakker om arbeidsgiver, er det Erik Hjelmås. Hanno Langweg refereres som veileder.
+\begin{description}
+\item[\tab •] Forkortelser vil bli beskrevet i sitt fulle navn i fotnoten.
+\item[\tab •] Andre spesielle ord vil få et eksponentnummer som kan refereres til litteraturlisten.
+\item[\tab •] Kommandoer og script vil ha denne fonten ved navn Courier new, på scriptene vil det også være syntax-farger.
+\item[\tab •] For kildehenvisning benytter vi oss av vancouver-stilen \cite{vancouver}
+\item[\tab •] Ord som er relevant å forklare i teksten vil ikke bli nevnt i litteraturlisten.
+\end{description}
+
+\section{Formål}
+Formålet med å integrere FEIDE-autentisering i Openstack vil være en forenklet hverdag for brukerne av SkyHiGh\cite{skyhigh}, ved at de kan logge inn med brukernavn og passord som de har fra før. Det skal være rollebasert innlogging. Da mener vi at det skal være forskjellige rettigheter hvis en ansatt logger inn kontra en student. Det viktigste er at det funker ved HiG, men hvis mulig skal vi lage en integrering som skal kunne brukes for andre Openstack-brukere. Dagens innlogging består av to servere som lagrer nye brukernavn og passord i passwd- og shadow-filene. Ugunstig ved at man må legge til nye brukere for hvert semester samt slette de gamle. 
+\newline \newline
+Formålet skal også være å øke sikkerheten. Ved at brukerne får enda et nytt brukernavn og passord å huske, så er det stor sannsynlighet at brukerne skriver ned passordet på mobil, post-it-lapp eller andre steder som svekker sikkerheten. Ved at man kan bruke brukernavn og passord som brukerne har fra før, så trenger man ikke huske nye data, samt at det er større sannsynlighet for at brukerne ikke trenger å skrive informasjonen ned.
+
+\section{Målgruppe}
+\subsection{Prosjektets målgruppe}
+Målgruppen for prosjektet er HiG. Det skal være en løsning som først og fremst er rettet for å fungere her. I første omgang for de ansatte med fagene som krever VM-er, deretter for alle ansatte ved skolen. Hvis en framtidig utvidelse av SkyHiGh skulle komme, så er det ønskelig at løsningen skal være tigjengelig for enkeltstudenter.
+\subsection{Rapportens målgruppe}
+Rapporten er myntet på at det skal være dokumentert utførelse av prosjektet til arbeidsgiver. Derav skal det være mulig for andre interesserte å kunne se hva vi har gjort, for så å kunne integrere løsningen selv hvis ønskelig. Rapporten er også i hovedsak en utdanning. For oss som gruppe, så er dette en erfaring vi kan bringe med oss videre inn i arbeidslivet.
+\section{Avgrensning}
+Hovedmålet for oppgaven er at det skal være fungerende innlogging til Openstack mot Feide. Nødløsning er at vi får en løsning som kun fungerer for denne skolen gjennom å autentisere med LDAP-registeret til skolen. Dokumentasjon for dette vil også vedvare for at andre interessenter skal kunne bruke nødløsningen hvis de selv bruker LDAP. Siden vi er drift-studenter, ser vi det også vesentlig at vi automatiserer det som kan automatiseres. \newline \newline
+Deretter så er det tid som avgrenser hva vi får gjort. Ønsket er å få satt opp et rack med kjørende Openstack-løsning med integrert Feide-autentisering. Bonusmål: Overvåking og implementering av SkyHiGh Adm-modulen.
+
+\section{Prosjektgruppens kunnskap}
+Prosjektgruppens faglige bakgrunn er den samme. Fredrik Magnussen, Håkon Tvedt og Morten H. Singstad går alle tre “Drift av nettverk- og datasystemer” ved HiG. Vi har brukt VM-er i fag og lært hvordan de blir opprettes, samt hvordan de oppererer på en maskin. Men kunnskap i hvordan Openstack-løsningen fungerer er heller liten. Heller ikke autentisering i seg selv har vi noen faglige kunnskaper ved.\newline \newline
+Det vi har av faglige kunnskaper som kan hjelpe oss er grunnforståelse og god teknisk innsikt. Programmeringskunnskapen vi har opparbeidet oss her på skolen vil også komme godt til nytte med tanke på script. Scriptene vil i all hovedsak lages for å automatisere installasjonen av Openstack, som er drøftet i Vedlegg A. \newline \newline
+Vi er derfor nødt til å tilegne oss mye kunnskap fra bunnen av. Innenfor Feide, Openstack og nye programeringsspråk. Vi er nødt til å sette oss grundig inn i hvordan Openstack autentiserer brukerne sine.
+
+\section{Roller}
+Arbeidsgiveren våres er Erik Hjelmås, ansatt ved HiG som førsteamanuensis. Kunnskapen til arbeidsgiver angående Feide vil ikke kunne være noen stor ressurs. Men erfaringsmessig kan han bidra oss med å lete på rett plass og stille de rette spørsmålene for å kunne få den kunnskapen vi trenger. Arbeidgiver er også en stor ressurs ved materialistiske behov. \newline \newline
+Veileder Hanno Langweg som også er ansatt ved HiG som førsteamanuensis, kommer til å være en sterk ressurs innenfor hvordan prosjektet bør gjennomføres. Bidrag med hvordan vi bør prioritere i et så stor prosjekt og hjelpe oss med å nå de målene vi har satt oss. \newline \newline
+Rolleinndeling under prosjektarbeidet:
+\begin{description}
+\item[\tab •] Morten H. Singstad \\ Valgt som leder for prosjektgruppa. Vil være den som er kontaktperson og som har det overordna ansvaret for gruppen og oppgavene.
+\item[\tab •] Fredrik Magnussen \\ Webansvarlig.
+\item[\tab •] Håkon Tvedt \\ Ansvaret for alt som har med installasjoner.
+\end{description}
+Når alt kommer til alt, så er vi en samarbeidende prosjektgruppe som hjelper hverandre og er ydmyke i rollene. Vi er bestemte, men har ingen ovenfra-og-ned-holdning ovenfor hverandre.

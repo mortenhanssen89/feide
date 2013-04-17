@@ -1,0 +1,89 @@
+%\clearpage
+\chapter{Kravspesifikasjon}
+Vi skal få inn en tjeneste under et allerede eksisterende rammeverk. Med det må vi beskrive de kravene som må opprettholdes for at vi skal kunne få en suksessfull integrering med ny autentisering. Vi skal også beskrive detaljert hendelsesløpet for en autentisering innenfor rammeverket, eksisterende og det vi vil integrere. \newline \newline
+Allerede eksisterende materiale vi kan se på er dokumentasjon på Openstack keystone-modulen og Feide-dokumentasjon.
+
+\section{Brukerbeskrivelse}
+\subsection{Omgivelser}
+Som nevnt tidligere, så skal autentiseringstjenesten integreres. Det skal skje på et allerede eksisterende system, som allerede har en annen autentiseringstjeneste. Selve Openstack-systemet samkjøres mellom flere servere. Det er stykket opp i moduler for ytelse og funksjonalitet. Den modulen vi skal jobbe på er “Controller noden”, den kjører noen moduler som vi skal jobbe med og derfor må sette oss ekstra nøye inn i.
+
+\begin{description}
+	\item{\tab •} Horizon - Webinterfacet til Openstack-systemet. Der er brukergrensesnittet som brukes for å kunne lage, endre, slette og kjøre VM-ene, det er også her innloggingen ligger.
+	\item{\tab •} Keystone - Tar seg av hvilke prosesser og VM-er som tilhører hvem. Derfor har også den en finger med i autentiseringen.
+\end{description}
+
+\subsection{Systemets brukere}
+Det er tre grupper med brukere mot tjenesten vi skal integrere. De har alle forskjellige roller og autoritet innen systemet.
+
+\begin{description}
+	\item{\tab •} Studenter/brukere - De har kun lov til å kunne lage, endre, slette og bruke VM-er. De har også restriksjoner på ytelse og mengde plass som kan brukes.
+	\item{\tab •} Ansatte - Forskjellen fra studentene er at de ansatte har ikke restriksjon på ytelse og mengde data.
+	\item{\tab •} It-tjenesten - Gruppen som har mest tilgang, men av den praktiske grunn at de har vedlikeholdsarbeidet. De har også rettigheter som de overnevnte.
+\end{description}
+
+Opplæringen ved å bruke tjenesten er minimal. Vi skal jobbe med innloggingen. Noe absolutt alle har vært borti før, med tanke på at det er noe av det første du må gjøre når du kommer til HiG.
+
+\newpage
+\subsection{User stories}
+\input{bilder/user_stories}
+
+\newpage
+\section{Detaljert kravspesifikasjon}
+\subsection{Funksjonelle krav}
+Kravene for funksjonaliteten av tjenesten vil være å få opp modulen som kjører webinterfacet til SkyHiGh. Webinterfacet ligger på Controller node-en i modulen Horizon. For å kunne sette opp Controller node-en er vi nødt til å ha en server å jobbe på. Det er der login-screenet skal være. Login-screenet skal autentiseres mot Feide, det vil også si at vi er nødt til å få opp en testbruker hos Feide. Feide bruker SAML 2.0 som er et xml-basert språk for autentisering. \newline \newline
+For at vi skal få autentisert med forskjellige roller må vi legge til noen ekstra metadata til SAML 2.0 dokumentet. Vi må også studere hvordan autentiseringen foregår mellom Horizon- og Keystone modulene for å kunne se hvilke data som sendes mellom de. Disse dataene trengs for å kunne konfigurere SAML 2.0 dokumentet til å ta imot de rette dataene, for dette å kunne autentiseres som forskjellige roller. Så må vi konfigurere på Horizon hvilke oppgaver som skal være tillatt for de forskjellige rollene. 
+\subsection{Use case diagram}
+\begin{figure}[H]
+      \center{\includegraphics[width=100mm,height=90mm]{bilder/use_case_diagram}}
+      \caption{\label{fig:usecase} Use case diagram 1}
+\end{figure}
+
+\begin{figure}[H]
+	\center{\includegraphics[width=100mm,height=90mm]{bilder/use_case_diagram_2}}
+    \caption{\label{fig:usecase2} Use case diagram 2}
+\end{figure}
+
+\clearpage
+\subsection{Høynivå use case}
+\input{bilder/use_cases}
+\subsection{Detaljert use case}
+\begin{figure}[H]
+	\includegraphics[height=280mm,width=150mm]{bilder/detaljert_usecase1}
+	\caption{\label{fig:det_usecase1} Detaljert usecase}
+\end{figure}
+\newpage
+\begin{figure}[H]
+	\includegraphics[height=280mm,width=150mm]{bilder/detaljert_usecase2}
+	\caption{\label{fig:det_usecase2} Detaljert usecase}
+\end{figure}
+\newpage
+\begin{figure}[H]
+	\includegraphics[height=280mm,width=150mm]{bilder/detaljert_usecase3}
+    \caption{\label{fig:det_usecase3} Detaljert usecase}
+\end{figure}
+
+\clearpage
+\subsection{Funksjon}
+\begin{figure}[H]
+      \center{\includegraphics[height=50mm,width=100mm]{bilder/Palogging_via_Feide}}
+      \caption{\label{fig:Pålogging_via_feide} Et eksempel på innlogging med feide}
+\end{figure}
+På figuren over kan du se hva som møter brukeren. På dette stadiet er det kun to datatyper, det er brukernavn og passord. Hendelserscenarioet er som figuren under.
+\begin{figure}[H]
+	\center{\includegraphics[scale=0.5]{bilder/innlogging-skjematisk}}
+	\caption{\label{fig:Innlogging_skjematisk} Hvordan autentiseringen foregår}
+\end{figure}
+Webserveren er på kontrollernoden, Openstack-systemet er det vi kan referere til som appen på figuren over. Horizon er den som refereres til som “web page” på figuren, det er her vi skal lage innloggingsskjermen som vist på første figur.
+\begin{description}
+	\item{\tab •} Input - Brukernavn og passord fra brukeren. \\Skriver inn info, info-en blir sendt videre til Feide som er autentiseringsdatabase. Feide skjekker om bruker har tilgang og hvilken rolle brukeren har. Sender deretter info tilbake til “web page-en”.
+	\item{\tab •} Output - Enten får brukeren at passord og brukernavn er feil, eller så kommer brukeren seg inn. Da vil brukergrensesnittet på Horizon vise seg for brukeren og brukeren kan lage, endre, slette og bruke VM-er utifra hvilken rolle/autentisering brukeren har.
+\end{description}
+
+\newpage
+\subsection{Struktur og tverr-relasjoner}
+\begin{figure}[H]
+	\includegraphics[width=150mm,height=100mm]{bilder/arkitektur_folsom}
+	\caption{\label{fig:Struktur og tverr-relasjoner} Hvor går autentiseringstrafikken}
+\end{figure}
+Som du kan se på figuren over så går all autentifikasjon mellom dashboard og identity. Dashboard er Horizon og identity er Keystone. Horizon har kun autentisering mot keystone, det vil si at all vesentlig autentiseringsdata som keystone får går til Horizon. \newline \newline
+Vi skjønner ut fra figuren, for at å autentisere mot FEIDE, så må vi vite hvilke data som kommer fra keystone. Når vi vet om de, så vet vi også hvilke data vi skal sende videre fra Horizon til FEIDE, utenom de obligatoriske attributtene (). 
