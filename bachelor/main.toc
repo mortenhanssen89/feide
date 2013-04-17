@@ -1,0 +1,30 @@
+\select@language {norsk}
+\contentsline {chapter}{Innhold}{vii}{section*.1}
+\contentsline {chapter}{Figurer}{ix}{section*.3}
+\contentsline {chapter}{Tabeller}{xi}{section*.5}
+\contentsline {chapter}{\numberline {1}Innledning}{1}{section*.7}
+\contentsline {section}{\numberline {1.1}Bakgrunn}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Oppgavebeskrivelse}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Rapportorganisering}{2}{section.1.3}
+\contentsline {section}{\numberline {1.4}Beskrivelser}{4}{section.1.4}
+\contentsline {section}{\numberline {1.5}Form\IeC {\r a}l}{4}{section.1.5}
+\contentsline {section}{\numberline {1.6}M\IeC {\r a}lgruppe}{4}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}Prosjektets m\IeC {\r a}lgruppe}{4}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}Rapportens m\IeC {\r a}lgruppe}{4}{subsection.1.6.2}
+\contentsline {section}{\numberline {1.7}Avgrensning}{5}{section.1.7}
+\contentsline {section}{\numberline {1.8}Prosjektgruppens kunnskap}{5}{section.1.8}
+\contentsline {section}{\numberline {1.9}Roller}{5}{section.1.9}
+\contentsline {chapter}{\numberline {2}Kravspesifikasjon}{1}{section*.8}
+\contentsline {section}{\numberline {2.1}Brukerbeskrivelse}{1}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Omgivelser}{1}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Systemets brukere}{1}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}User stories}{2}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Prim\IeC {\ae }rm\IeC {\r a}l}{2}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.5}Sekund\IeC {\ae }rm\IeC {\r a}l}{2}{subsection.2.1.5}
+\contentsline {section}{\numberline {2.2}Detaljert kravspesifikasjon}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Funksjonelle krav}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Use case diagram}{3}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}H\IeC {\o }yniv\IeC {\r a} use case}{5}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Detaljert use case}{9}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Funksjon}{12}{subsection.2.2.5}
+\contentsline {subsection}{\numberline {2.2.6}Struktur og tverr-relasjoner}{13}{subsection.2.2.6}

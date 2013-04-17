@@ -1,0 +1,60 @@
+\documentclass[BIND,norsk,twoside]{gucthesis}
+
+
+% PACKAGES %
+\usepackage[utf8x]{inputenc}     % For utf8 encoded .tex files
+\usepackage[pdftex]{graphicx, hyperref}   % For cross references in pdf
+\usepackage{float}
+\usepackage{color}              % For colouring text   
+\usepackage{nomencl}    % For abbreviation
+\usepackage{pdfpages}
+\usepackage{longtable}
+\usepackage[table,tabulator]{xcolor}
+\makenomenclature       % Use with \nomenclature{Abbreviation}{Full text}
+            % Compile with: "makeindex main.nlo -s nomencl.ist -o main.nls"
+            % Before and after latex of pdflatex
+
+% Definitions of colors for use in document
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{darkgray}{gray}{0.8}
+
+% COMMENTS AND NOTES %
+\newcommand{\comment}[1]{\textcolor{blue}{\emph{#1}}}  %% use of the colour and you can see how to use commands with parts \comment{so what}
+\newcommand{\com}[1]{{\color{red}#1}} % supervisor comment
+\newcommand{\todo}[1]{{\color{green}#1}} % items to do
+\newcommand{\n}[1]{{\color{blue}#1}} % other comment
+\newcommand{\dn}[1]{} % add the d to a note to say that you have finished with it.
+\renewcommand{\nomname}{List of Abbreviations}
+\newcommand{\tab}{\hspace*{2em}} % aligning the text as one tab stop
+
+\begin{document}
+
+\input{chapters/BachelorThesisData} % this is the file which contains all the details about your thesis
+
+\makefrontpages
+
+%\input{chapters/forord}
+
+\tableofcontents
+\vfill \hfill \textbf{Word count: 123} % Requirement according to the template
+                                       % to print word count without appendix
+\listoffigures
+\listoftables
+\printnomenclature
+
+%\input{chapters/innholdsfortegnelse}
+\input{chapters/innledning}
+\input{chapters/kravspesifikasjon}
+%\input{chapters/teoretisk grunnlag/feide}
+%\input{chapters/teoretisk grunnlag/openstack}
+%\input{chapters/design}
+%\input{chapters/gjennomføring}
+%\input{chapters/driftsrutiner}
+%\input{chapters/drøfting}
+%\input{chapters/avslutning}
+
+\bibliographystyle{unsrt}
+\bibliography{main}
+
+\appendix %after this line all chapters will have leters instead of numbers
+\end{document}
